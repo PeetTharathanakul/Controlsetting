@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "PlayerControl",
     "maps": [
         {
             "name": "Player",
@@ -210,7 +210,7 @@
                     "name": "",
                     "id": "a471f951-32cc-4c5f-a316-126aa75217ed",
                     "path": "<Keyboard>/x",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Run",
@@ -221,7 +221,7 @@
                     "name": "",
                     "id": "c0b7a6ef-1493-4a6f-b947-4dc9e7fd0d57",
                     "path": "<Keyboard>/leftShift",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Run",
@@ -232,7 +232,7 @@
                     "name": "",
                     "id": "31de599f-142a-42ab-bd17-7e9ee6b16a9b",
                     "path": "<XInputController>/leftTrigger",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Run",

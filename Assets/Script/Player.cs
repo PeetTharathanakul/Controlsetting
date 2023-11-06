@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class Player : MonoBehaviour
 {
+    public float PlayerSpeed;
+
     public float movementSmoothingSpeed = 1f;
     public float JumpHigh = 5;
 
@@ -14,6 +17,11 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerInput inputmovement;
 
     [SerializeField] private PlayerMovementBehaviour Movement;
+
+    private void Start()
+    {
+        movementSmoothingSpeed = PlayerSpeed;
+    }
 
     void Update()
     {
@@ -47,9 +55,19 @@ public class Player : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext value)
     {
-        if (value.started)
+        switch (value.phase)
         {
-
+            case InputActionPhase.Disabled:
+                movementSmoothingSpeed = PlayerSpeed;
+                break;
+            case InputActionPhase.Performed:
+                movementSmoothingSpeed = PlayerSpeed + 5;
+                break;
+            case InputActionPhase.Canceled:
+                movementSmoothingSpeed = PlayerSpeed;
+                break;
+            default:
+                break;
         }
     }
 
@@ -57,7 +75,7 @@ public class Player : MonoBehaviour
     {
         if (value.started)
         {
-
+            //Run Animation
         }
     }
 
