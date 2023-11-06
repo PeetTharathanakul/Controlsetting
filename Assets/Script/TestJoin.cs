@@ -23,6 +23,7 @@ public class TestJoin : MonoBehaviour
     void Start()
     {
         StartCoroutine(Countdown());
+        StartCoroutine(Highlight());
     }
 
     IEnumerator Countdown()
@@ -32,23 +33,16 @@ public class TestJoin : MonoBehaviour
         Eventsys.SetSelectedGameObject(First);
     }
 
-    private void OnMouseUp()
+    IEnumerator Highlight()
     {
-        Debug.Log("Check");
-        if (Eventsys.currentSelectedGameObject == null)
+        while (true)
         {
-            Eventsys.SetSelectedGameObject(lastedpoint);
-            Debug.Log("Check2");
+            if (Eventsys.currentSelectedGameObject == null)
+            {
+                Eventsys.SetSelectedGameObject(lastedpoint);
+            }
+            yield return null;
         }
     }
 
-    private void OnMouseDown()
-    {
-        Debug.Log("Check");
-        if(Eventsys.currentSelectedGameObject == null)
-        {
-            Eventsys.SetSelectedGameObject(lastedpoint);
-            Debug.Log("Check2");
-        }
-    }
 }
