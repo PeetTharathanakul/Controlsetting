@@ -36,7 +36,11 @@ public class Player : MonoBehaviour
 
     void CalculateMovementInputSmoothing()
     {
-        smoothInputMovement = Vector3.Lerp(smoothInputMovement, rawInputMovement, Time.deltaTime * movementSmoothingSpeed);
+        if (!GameMenu.current.Isup)
+        {
+            smoothInputMovement = Vector3.Lerp(smoothInputMovement, rawInputMovement, Time.deltaTime * movementSmoothingSpeed);
+        }
+        
     }
 
     public void OnMovement(InputAction.CallbackContext value)
@@ -47,7 +51,7 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext value)
     {
-        if (value.started)
+        if (value.started && !GameMenu.current.Isup)
         {
             gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpHigh, ForceMode.Impulse);
         }
@@ -55,20 +59,24 @@ public class Player : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext value)
     {
-        switch (value.phase)
+        if (!GameMenu.current.Isup)
         {
-            case InputActionPhase.Disabled:
-                movementSmoothingSpeed = PlayerSpeed;
-                break;
-            case InputActionPhase.Performed:
-                movementSmoothingSpeed = PlayerSpeed + 5;
-                break;
-            case InputActionPhase.Canceled:
-                movementSmoothingSpeed = PlayerSpeed;
-                break;
-            default:
-                break;
+            switch (value.phase)
+            {
+                case InputActionPhase.Disabled:
+                    movementSmoothingSpeed = PlayerSpeed;
+                    break;
+                case InputActionPhase.Performed:
+                    movementSmoothingSpeed = PlayerSpeed + 5;
+                    break;
+                case InputActionPhase.Canceled:
+                    movementSmoothingSpeed = PlayerSpeed;
+                    break;
+                default:
+                    break;
+            }
         }
+        
     }
 
     public void OnDance(InputAction.CallbackContext value)
@@ -84,6 +92,14 @@ public class Player : MonoBehaviour
         if (value.started)
         {
 
+        }
+    }
+
+    public void Menu(InputAction.CallbackContext value)
+    {
+        if (value.started)
+        {
+            GameMenu.current.OpenMenu();
         }
     }
 }

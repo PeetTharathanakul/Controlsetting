@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
@@ -24,6 +25,11 @@ public class TestJoin : MonoBehaviour
     {
         StartCoroutine(Countdown());
         StartCoroutine(Highlight());
+    }
+
+    public void Loadlevel()
+    {
+        SceneManager.LoadScene(1);
     }
 
     IEnumerator Countdown()
