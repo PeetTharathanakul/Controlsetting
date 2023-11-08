@@ -6,16 +6,21 @@ using UnityEngine.InputSystem;
 using Fusion;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 
-public class Player : NetworkBehaviour
+public class Player : SimulationBehaviour , NetworkBehaviourCallbacks
 {
-    public float PlayerSpeed;
-
-    public float movementSmoothingSpeed = 1f;
+    [Networked]
+    public float PlayerSpeed { get; set; }
+    [Networked]
+    public float movementSmoothingSpeed { get; set; }
     public float JumpHigh = 5;
 
-    [SerializeField] private Vector3 rawInputMovement;
-    [SerializeField] private Vector3 smoothInputMovement;
-    [SerializeField] private PlayerInput inputmovement;
+
+    [Networked]
+    private Vector3 rawInputMovement { get; set; }
+    [Networked]
+    private Vector3 smoothInputMovement { get; set; }
+    [SerializeField] private PlayerInput inputmovement { get; set; }
+
 
     [SerializeField] private PlayerMovementBehaviour Movement;
 
@@ -27,7 +32,7 @@ public class Player : NetworkBehaviour
         movementSmoothingSpeed = PlayerSpeed;
     }
 
-    void Update()
+    public override void FixedUpdateNetwork()
     {
         CalculateMovementInputSmoothing();
         UpdatePlayerMovement();

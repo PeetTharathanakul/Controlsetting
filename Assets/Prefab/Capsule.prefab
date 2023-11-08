@@ -153,12 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  PlayerSpeed: 5
-  movementSmoothingSpeed: 5
+  _PlayerSpeed: 5
+  _movementSmoothingSpeed: 5
   JumpHigh: 5
-  rawInputMovement: {x: 0, y: 0, z: 0}
-  smoothInputMovement: {x: 0, y: 0, z: 0}
-  inputmovement: {fileID: 760177349793829796}
   Movement: {fileID: 5090560632208164032}
 --- !u!114 &760177349793829796
 MonoBehaviour:
@@ -274,10 +271,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2527d1dd71c3968489cffac0a1264a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   playerRigidbody: {fileID: 3273492446068593259}
   movementSpeed: 5
   turnSpeed: 0.1
   mainCamera: {fileID: 0}
+  _movementDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &2401605178970386167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +300,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 7133192301416969103}
+  - {fileID: 5090560632208164032}
   - {fileID: 5135305490551142746}
   SimulationBehaviours: []
 --- !u!114 &5135305490551142746
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   InterpolationSpace: 0
-  InterpolationTarget: {fileID: 0}
+  InterpolationTarget: {fileID: 892656155515811609}
   InterpolateErrorCorrection: 1
   InterpolatedErrorCorrectionSettings:
     MinRate: 3.3

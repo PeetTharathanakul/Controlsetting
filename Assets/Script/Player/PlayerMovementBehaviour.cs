@@ -1,8 +1,9 @@
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementBehaviour : MonoBehaviour
+public class PlayerMovementBehaviour : NetworkBehaviour
 {
 
     [Header("Component References")]
@@ -14,7 +15,9 @@ public class PlayerMovementBehaviour : MonoBehaviour
 
 
     [SerializeField] private Camera mainCamera;
-    private Vector3 movementDirection;
+
+    [Networked]
+    public Vector3 movementDirection { get; set; }
 
     private void Start()
     {

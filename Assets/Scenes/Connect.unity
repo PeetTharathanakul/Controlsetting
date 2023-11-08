@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6306b988dd97eb04b9a59e2e0599341e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowHierarchyWindowOverlay: 1
+  ShowHierarchyWindowOverlay: 0
   _lobby: 1
   _levels: 0000000000000000
 --- !u!1 &1398919018

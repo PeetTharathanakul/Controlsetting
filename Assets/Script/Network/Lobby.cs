@@ -19,6 +19,8 @@ public class Lobby : NetworkBehaviour, INetworkRunnerCallbacks
     private Action<NetworkRunner, ConnectionStatus, string> _connectionCallback;
     private ConnectionStatus _status;
 
+    public static Lobby current;
+
     public enum ConnectionStatus
     {
         Disconnected,
@@ -27,6 +29,11 @@ public class Lobby : NetworkBehaviour, INetworkRunnerCallbacks
         Connected,
         Loading,
         Loaded
+    }
+
+    private void Awake()
+    {
+        current = this;
     }
 
     private void Start()
