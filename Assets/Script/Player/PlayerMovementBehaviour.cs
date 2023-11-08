@@ -16,6 +16,11 @@ public class PlayerMovementBehaviour : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     private Vector3 movementDirection;
 
+    private void Start()
+    {
+        mainCamera = Camera.main;
+    }
+
     public void UpdateMovementData(Vector3 newMovementDirection)
     {
         movementDirection = newMovementDirection;
@@ -29,6 +34,11 @@ public class PlayerMovementBehaviour : MonoBehaviour
 
     void MoveThePlayer()
     {
+        if (mainCamera == null)
+        {
+            return;        
+        }
+
         Vector3 movement = CameraDirection(movementDirection) * movementSpeed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + movement);
     }

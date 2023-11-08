@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Fusion;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     public float PlayerSpeed;
 
@@ -18,8 +19,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] private PlayerMovementBehaviour Movement;
 
+    private GameMenu gameMenu;
+
     private void Start()
     {
+        gameMenu = FindObjectOfType<GameMenu>();
         movementSmoothingSpeed = PlayerSpeed;
     }
 
@@ -36,7 +40,12 @@ public class Player : MonoBehaviour
 
     void CalculateMovementInputSmoothing()
     {
-        if (!GameMenu.current.Isup)
+        if(gameMenu == null)
+        {
+            return;
+        }
+
+        if (!gameMenu.Isup)
         {
             smoothInputMovement = Vector3.Lerp(smoothInputMovement, rawInputMovement, Time.deltaTime * movementSmoothingSpeed);
         }
@@ -51,7 +60,7 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext value)
     {
-        if (value.started && !GameMenu.current.Isup)
+        if (value.started && !gameMenu.Isup)
         {
             gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpHigh, ForceMode.Impulse);
         }
@@ -59,7 +68,7 @@ public class Player : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext value)
     {
-        if (!GameMenu.current.Isup)
+        if (!gameMenu.Isup)
         {
             switch (value.phase)
             {
@@ -99,7 +108,7 @@ public class Player : MonoBehaviour
     {
         if (value.started)
         {
-            GameMenu.current.OpenMenu();
+            gameMenu.OpenMenu();
         }
     }
 }

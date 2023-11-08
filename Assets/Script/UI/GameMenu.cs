@@ -1,10 +1,11 @@
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class GameMenu : MonoBehaviour
+public class GameMenu : NetworkBehaviour
 {
     public static GameMenu current;
     public bool Isup;

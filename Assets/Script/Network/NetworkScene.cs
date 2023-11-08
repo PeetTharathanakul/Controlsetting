@@ -11,16 +11,20 @@ public class NetworkScene : NetworkSceneManagerBase
     private Scene _loadedScene;
 
 
+
+
     protected override void Shutdown(NetworkRunner runner)
     {
         base.Shutdown(runner);
         if (_loadedScene != default)
-            SceneManager.UnloadSceneAsync(_loadedScene);
+            SceneManager.LoadScene(1);
         _loadedScene = default;
     }
 
     protected override IEnumerator SwitchScene(SceneRef prevScene, SceneRef newScene, FinishedLoadingDelegate finished)
     {
+        SceneManager.LoadScene(1);
+
         throw new System.NotImplementedException();
     }
 }

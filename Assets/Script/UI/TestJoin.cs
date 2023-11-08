@@ -29,7 +29,7 @@ public class TestJoin : MonoBehaviour
 
     public void Loadlevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     IEnumerator Countdown()
